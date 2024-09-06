@@ -1,0 +1,301 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-05: purple;
+  --color-10: purple;
+  --color-15: purple;
+  --color-20: purple;
+  --shadow: 0 1px 2px 0 #D5D3E0;
+  --shadow-reverse: 0 -1px 2px 0 #D5D3E0;
+  
+}
+
+input[type='date'] {
+  background: transparent;
+  /* position: hidden; */
+  width: 1rem;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
+input[type='dae']::after{
+  content: url('/icons/alarm-clock.svg');
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 1rem;
+  height: 1rem;
+}
+
+body {
+  font-family: sans-serif;
+  line-height: 1.4;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: #EDE9FF;
+  color: #2D264E;
+}
+
+button, input, textarea {
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+
+.main-btn {
+  background-color: #8C7ED6;
+  color: #EDE9FF;
+  padding: .5rem .85rem;
+  font-weight: 500;
+  border-radius: .25rem;
+  font-size: 12px;
+  box-shadow: var(--shadow);
+  min-width: 36px;
+  min-height: 36px;
+  line-height: 1;
+}
+
+.main-btn svg {
+  width: .85rem;
+  height: .85rem;
+  fill: #EDE9FF;
+}
+
+
+.main-btn.fixed {
+  position: fixed;
+  right: 5vw;
+  bottom: 5vw;
+  min-width: 40px;
+  min-height: 40px;
+  z-index: 1000;
+}
+
+.switch-btn {
+  background-color: #8C7ED6;
+  color: #EDE9FF;
+  font-weight: 500;
+  border-radius: 50%;
+  font-size: 12px;
+  box-shadow: var(--shadow);
+  width: 24px;
+  height: 24px;
+  /* position: absolute; */
+  top: 0;
+  right: 0;
+  /* transform: translateY(-50%); */
+}
+
+
+.logo {
+  font-size: 15px;
+  font-weight: 900;
+  color: #2D264E;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 5vw;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+main {
+  padding: 1rem 5vw;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.current-date {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.current-date > div {
+  position: relative;
+}
+
+.current-date label {
+  font-size: .75rem;
+  font-weight: 500;
+  color: #908CA9;
+}
+
+#_nextPeriod {
+  display: none;
+}
+
+.balance {
+  padding-top: 2rem;
+}
+
+.balance .shortage {
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: orangered;
+}
+
+.balance h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #8477C1;
+}
+
+.stats {
+  /* padding-top: 2rem; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+
+.stats > div {
+  
+}
+
+.stats > div .title {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.stats > div .title > svg {
+  width: 1rem;
+  height: 1rem;
+  fill: orange;
+}
+
+.stats > div .text {
+  
+}
+
+
+.bal {
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+  
+}
+
+.bal div {
+  background: #F3F1FF;
+  border-radius: .5rem;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.bal svg {
+  width: 1rem;
+}
+
+.bal div span {
+  font-style: italic;
+}
+
+
+aside#createNew {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 0;
+  /* background: rgba(243, 241, 255, 1);*/
+  background: #EDE9FF;
+  /* backdrop-filter: blur(5px); */
+  box-shadow: var(--shadow-reverse);
+  border-radius: 1rem;
+  transition: all .3s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 100;
+  overflow-y: scroll;
+  /* display: none; */
+}
+
+#createNewContainer {
+  overflow: hidden;
+  padding: 1rem;
+  padding-top: 2rem;
+}
+
+#createNew .current-date .inputField {
+  max-width: 100px;
+}
+
+.createNew {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem;
+}
+ 
+.inputField input {
+  width: 100%;
+  height: 40px;
+  background: #F3F1FF;
+  border-radius: .5rem;
+  padding: 0 .5rem;
+  /* box-shadow: var(--shadow); */
+  border: 1px solid #D5D3E0;
+}
+
+.inputField label {
+  font-weight: 600;
+}
+
+.inputField label[for=shortage] {
+  color: orangered;
+}
+
+.inputField input:read-only {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+
+footer {
+  text-align: center;
+  padding: 1rem 5vw;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    width: 600px;
+    max-width: 600px;
+    margin: 80px auto;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+  
+  .logo {
+    font-size: 2rem;
+  }
+  
+  label {
+    font-size: 24px;
+  }
+  
+  button {
+    display: none;
+  }
+}
