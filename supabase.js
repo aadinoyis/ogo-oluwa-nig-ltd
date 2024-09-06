@@ -218,13 +218,3 @@ const channelsSub = () => {
     )
     .subscribe()
 }
-const all_channels = supabase.channel('custom-all-channel')
-  .on(
-    'postgres_changes',
-    { event: '*', schema: 'public', table: 'sales_transaction' },
-    (payload) => {
-      console.log('Change received!', payload)
-    }
-  )
-  .subscribe()
-  
