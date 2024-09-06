@@ -113,7 +113,7 @@ export const insertDb = async ({
   try {
     const { data, error } = await supabase
       .from('sales_transaction')
-      .insert([
+      .upsert([
         {
           date: date,
           price: figurize(price),
@@ -131,8 +131,14 @@ export const insertDb = async ({
         ])
       .select()
       
-      if (data) console.log('data added!')
-      if (error) console.log(error)
+      if (data) {
+        alert('DATA UPDATED')
+        return 'Done'
+      }
+      if (error) {
+        alert('PLEASE, INSERT ALL DATA')
+        return 'Failed'
+      }
   } catch (e) {
     console.log(e)
   }
@@ -212,3 +218,13 @@ const channelsSub = () => {
     )
     .subscribe()
 }
+const all_channels = supabase.channel('custom-all-channel')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'sales_transaction' },
+    (payload) => {
+      console.log('Change received!', payload)
+    }
+  )
+  .subscribe()
+  

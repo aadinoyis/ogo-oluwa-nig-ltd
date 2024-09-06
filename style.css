@@ -70,6 +70,10 @@ button, input, textarea {
   fill: #EDE9FF;
 }
 
+.active {
+  animation: fades 2s ínfinite alternate ease-in-out;
+}
+
 
 .main-btn.fixed {
   position: fixed;
@@ -275,6 +279,7 @@ aside#createNew {
 footer {
   text-align: center;
   padding: 1rem 5vw;
+  font-weight: 400;
 }
 
 @media print {
@@ -297,5 +302,15 @@ footer {
   
   button {
     display: none;
+  }
+}
+
+@keyframes fades {
+  from {
+    background-color: #8C7ED6;
+  }
+
+  to {
+    background-color: rgba(140, 126, 214, 0.5);
   }
 }

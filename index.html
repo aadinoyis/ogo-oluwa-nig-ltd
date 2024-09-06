@@ -207,14 +207,18 @@
       </div>
       
       <h5><em>Confirm your data before submitting!</em></h5>
-      <button class="main-btn" id="submit">Confirm &amp; Submit</button>
+      <button class="main-btn active" id="submit">Confirm &amp; Submit</button>
     </div>
   </aside>
   
   <button class="main-btn fixed" id="create">&plus;</button>
   
   <footer>
-    &copy; 2024, OGO OLUWA NIG. LTD. 
+    &copy; <span id="year"></span>, OGO OLUWA NIG. LTD. 
+    
+    <script>
+      document.querySelector('#year').innerHTML = new Date().getFullYear()
+    </script>
   </footer>
   
   

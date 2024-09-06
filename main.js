@@ -17,8 +17,6 @@ const toPeriod = document.querySelector('#toPeriod')
 const fromPeriodDisp = document.querySelector('#fromPeriodDisp')
 const toPeriodDisp = document.querySelector('#toPeriodDisp')
 
-// const exit_fromPeriod = document.querySelector('#exit_fromPeriod')
-// const exit_toPeriod = document.querySelector('#exit_toPeriod')
 const _nextPeriod = document.querySelector('#_nextPeriod')
 const toggle_nextPeriod = document.querySelector('#toggle_nextPeriod')
 
@@ -44,12 +42,6 @@ toggle_nextPeriod.onclick = function (e) {
   return is_nextPeriod = true
 }
 
-// exit_toPeriod.onclick = e => {
-//   toPeriod.value = null;
-//   toPeriodDisp.innerHTML = '--pick end date--';
-//   nextData = null
-// }
-
 let dateFormat = {
   weekday: 'short', 
   day: '2-digit', 
@@ -72,7 +64,7 @@ let nextData = null
 
 
 const displayData = (data) => {
-  console.log(data)
+  // console.log(data)
   // date: document.querySelector(''),
   document.querySelector('#price_yy').innerHTML = `&#8358; ${formatDigits(data.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))}`
   document.querySelector('#closing_yy').innerHTML = formatDigits(data.closing.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }))
@@ -106,12 +98,6 @@ const logDisplay = () => {
         cash_to_bank: 0.00,
         shortage: 0.00,
       }
-      // nextData.forEach(item => {
-      //   result.balance += item.balance;
-      //   result.cash_at_hand += item.cash_at_hand;
-      //   result.cash_to_bank += item.cash_to_bank;
-      //   result.shortage += item.shortage;
-      // });
       for (let item of nextData) {
         result.litres += item.litres
         result.amount += item.amount
@@ -126,24 +112,6 @@ const logDisplay = () => {
       displayData(result)
     }
     
-    
-    // else {
-    //   let data = {
-    //     price: '--',
-    //     closing: '--',
-    //     opening: '--',
-    //     litres: '--',
-    //     amount: '--',
-    //     expenses: '--',
-    //     pos: '--',
-    //     balance: '--',
-    //     cash_at_hand: '--',
-    //     cash_to_bank: '--',
-    //     shortage: '--',
-    //   }
-      
-    //   displayData(data)
-    // }
   } 
   if (prevData === null && nextData === null) {
   
@@ -361,8 +329,10 @@ saleRecord.handCash.onkeyup = e => {
 
 
 
-submit.onclick = e => {
+submit.onclick = async function (e) {
   // console.log(saleRecord.saleValue())
+  this.classList.add('active')
+  this.innerHTML = '...'
   const {
     date,
     price,
@@ -378,7 +348,7 @@ submit.onclick = e => {
     shortage
   } = saleRecord.saleValue()
   
-  insertDb({
+  const response = await insertDb({
     date,
     price,
     closing,
@@ -392,4 +362,8 @@ submit.onclick = e => {
     cash_to_bank,
     shortage
   })
+  if(response) {
+    this.classList.remove('active')
+    this.innerHTML = `${response} &check;`
+  }
 }
