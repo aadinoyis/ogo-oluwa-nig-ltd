@@ -1,10 +1,28 @@
 
-import {insertDb, selectDb} from './supabase.js';
+import {insertDb, selectDb, saleHistory} from './supabase.js';
 
 const print_page = document.querySelector('#print_page')
 print_page.onclick = e => {
   window.print()
 }
+
+const all_sales = async () => {
+  let sale_history = await saleHistory()
+  
+  let dates = []
+  for (let dt of sale_history) {
+    dates.push(dt.date)
+    dates.sort((a, b) => (a < b ? 1 : -1)); 
+    // console.log(dates)
+    let options = '';
+    for (let i = 0; i < dates.length; i++) {
+      options += `<option value=${dates[i]}>${dates[i]}</option>`;
+    }
+    document.querySelector('#history').innerHTML = options;
+  }
+}
+
+all_sales()
 
 const formatDigits = (digits) => {
   const value = digits !== null ? digits.replace(/,/g, '') : '';
@@ -133,6 +151,27 @@ const logDisplay = () => {
   }
 }
 logDisplay()
+
+const saleHist = document.querySelector('#history')
+saleHist.addEventListener('change', async e => {
+  e.preventDefault()
+  
+  toPeriod.value = null;
+  nextData = null
+  fromPeriod.value = saleHist.value
+  toPeriodDisp.innerHTML = 'DD/MM/YY';
+  _nextPeriod.style.display = 'none'
+  toggle_nextPeriod.innerHTML = '&plus;'
+  
+  
+  fromPeriodDisp.innerHTML = new Date(saleHist.value).toLocaleDateString('en-US', dateFormat)
+  const data = await selectDb(saleHist.value, null)
+  if (data) {
+    prevData = data
+    logDisplay()
+    return is_nextPeriod = true
+  }
+})
 
 fromPeriod.addEventListener('change', async e => {
   fromPeriodDisp.innerHTML = new Date(fromPeriod.value).toLocaleDateString('en-US', dateFormat)

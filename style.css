@@ -149,6 +149,14 @@ main {
   display: none;
 }
 
+.history {
+  background: transparent;
+  border: 1px solid #8C7ED6;
+  margin-bottom: 1rem;
+  padding: .5rem;
+  outline: none;
+}
+
 .balance {
   padding-top: 2rem;
 }
@@ -170,7 +178,7 @@ main {
   /* padding-top: 2rem; */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+  grid-gap: .5rem;
 }
 
 .stats > div {
@@ -179,18 +187,18 @@ main {
 
 .stats > div .title {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   gap: .5rem;
 }
 
 .stats > div .title > svg {
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  /* height: 1rem; */
   fill: orange;
 }
 
 .stats > div .text {
-  
+  font-size: 1.2rem;
 }
 
 
@@ -198,19 +206,23 @@ main {
   padding: 2rem 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-gap: 1rem;
+  grid-gap: .5rem;
   
 }
 
 .bal div {
-  background: #F3F1FF;
+  /* background: #F3F1FF; */
   border-radius: .5rem;
-  padding: 1rem;
-  box-shadow: var(--shadow);
+  /* padding: 1rem; */
+  /* box-shadow: var(--shadow); */
 }
 
 .bal svg {
-  width: 1rem;
+  width: 1.5rem;
+}
+
+.bal div p {
+  font-size: 1.2rem;
 }
 
 .bal div span {
@@ -273,6 +285,52 @@ aside#createNew {
   background: transparent;
   box-shadow: none;
   border: none;
+}
+
+aside#auth {
+
+  width: 100vw;
+  height: auto;
+  /* background: rgba(243, 241, 255, 1);*/
+  /* background: #EDE9FF; */
+  /* backdrop-filter: blur(5px); */
+  /* box-shadow: var(--shadow-reverse); */
+  /* border-radius: 1rem; */
+  /* transition: all .3s cubic-bezier(0.77, 0, 0.175, 1); */
+  z-index: 100;
+  overflow-y: scroll;
+  /* display: none; */
+}
+
+#authContainer {
+  overflow: hidden;
+  padding: 1rem;
+  padding-top: 2rem;
+}
+
+#auth .current-date .inputField {
+  max-width: 100px;
+}
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  /* grid-template-columns: repeat(2, 1fr); */
+  grid-gap: 1rem;
+}
+ 
+.inputField input {
+  width: 100%;
+  height: 40px;
+  background: #F3F1FF;
+  border-radius: .5rem;
+  padding: 0 .5rem;
+  /* box-shadow: var(--shadow); */
+  border: 1px solid #D5D3E0;
+}
+
+.inputField label {
+  font-weight: 600;
 }
 
 

@@ -19,11 +19,15 @@
       <button class="main-btn" id="print_page">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5,6H19V4.5A4.505,4.505,0,0,0,14.5,0h-5A4.505,4.505,0,0,0,5,4.5V6H4.5A4.505,4.505,0,0,0,0,10.5v6A4.505,4.505,0,0,0,4.5,21h.776A4.494,4.494,0,0,0,9.5,24h5a4.494,4.494,0,0,0,4.224-3H19.5A4.505,4.505,0,0,0,24,16.5v-6A4.505,4.505,0,0,0,19.5,6ZM8,4.5A1.5,1.5,0,0,1,9.5,3h5A1.5,1.5,0,0,1,16,4.5V6H8Zm8,15A1.5,1.5,0,0,1,14.5,21h-5A1.5,1.5,0,0,1,8,19.5v-2A1.5,1.5,0,0,1,9.5,16h5A1.5,1.5,0,0,1,16,17.5Zm5-3A1.5,1.5,0,0,1,19.5,18H19v-.5A4.505,4.505,0,0,0,14.5,13h-5A4.505,4.505,0,0,0,5,17.5V18H4.5A1.5,1.5,0,0,1,3,16.5v-6A1.5,1.5,0,0,1,4.5,9h15A1.5,1.5,0,0,1,21,10.5Z"/></svg>
       </button>
-      <button class="main-btn">Sign out</button>
+      <a href="auth.html" class="main-btn">Sign In</a>
     </nav>
   </header>
   <main>
-
+    <h4>History</h4>
+    <select name="history" id="history" class="history">
+      <option value="21/dec/2021">21/dec/2021</option>
+    </select>
+    
     <div class="current-date">
       <div>
         <!-- <h4>Date</h4> -->
@@ -42,11 +46,13 @@
       </div>
     </div>
     
+
+    
     <div class="balance">
         <!-- <span>&uarr;&darr; 23,230,670.00 &uarr;&darr;</span> -->
       <!-- <h4>BALANCE /<span>Shortage</span></h4> -->
-      <span class="shortage" id="shortage_yy">--</span>
       <h1 id="balance_yy">--</h1>
+      <span class="shortage" id="shortage_yy">--</span>
     </div>
     
 
@@ -195,7 +201,7 @@
         </div>
         
         
-        <div class="inputField">
+        <div class="inputField" style="display: none">
           <label for="balance">Balance (&#8358;)</label>
           <input type="text" name="balance" id="balance" placeholder="--" readonly>
         </div>

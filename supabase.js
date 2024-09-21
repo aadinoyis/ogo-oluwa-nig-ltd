@@ -10,18 +10,29 @@ export const figurize = (figure) => {
   return parseFloat(figure.replace(/,/g, ""))
 }
 
-const signUp = async (email, password) => {
+export const signUp = async (reg_email, reg_pass) => {
+  console.log(reg_email, reg_pass)
   const { data, error } = await supabase.auth.signUp({
-    email: 'example@email.com',
-    password: 'example-password',
+    email: reg_email,
+    password: reg_pass,
   })
+  
+  console.log(data)
 }
-const signIn = async (email, password) => {
+export const signIn = async (email, password) => {
   const { data, error } = await supabase.auth.signInWithPassword({
-  email: 'example@email.com',
-  password: 'example-password',
-})
-
+    email: email,
+    password: password,
+  })
+  
+  if (data) {
+    console.log(data)
+    return data
+  }
+  if (error) {
+    console.log(error)
+    return error
+  }
 }
 const signOut = async () => {
   const { error } = await supabase.auth.signOut()
@@ -46,6 +57,17 @@ const userChange = () => {
   })
 }
 
+
+export const saleHistory = async () => {
+  let { data: sales_dates, error } = await supabase
+    .from('sales_transaction')
+    .select("date")
+  
+  if (sales_dates) {
+    return sales_dates
+  }
+  if (error) console.log(error)
+}
 
 // SELECT
 export const selectDb = async (prev, next) => {
